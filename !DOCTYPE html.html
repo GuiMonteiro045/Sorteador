@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Sorteador de Números</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      background-color: #f0f8ff;
+      margin-top: 50px;
+    }
+
+    img.logo {
+      width: 250px;
+      margin-bottom: 0px; /* espaço entre logo e título reduzido */
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #333;
+    }
+
+    #numero {
+      font-size: 60px;
+      margin: 40px 0;
+      color: #0077cc;
+    }
+
+    button {
+      font-size: 24px;
+      padding: 12px 30px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    #jaSorteados {
+      margin-top: 40px;
+      font-size: 18px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<!-- 🌟 Logo no topo -->
+<img src="logo.png" alt="Logo da Gincana" class="logo">
+
+<h1>🎲 Sorteador de Números (1 a 24) 🎲</h1>
+<div id="numero">Clique para sortear</div>
+<button onclick="sortearNumero()">Sortear Número</button>
+
+<div id="jaSorteados"></div>
+
+<script>
+  let numeros = Array.from({ length: 24 }, (_, i) => i + 1);
+  let sorteados = [];
+
+  function sortearNumero() {
+    if (numeros.length === 0) {
+      document.getElementById("numero").innerText = "Todos os números já foram sorteados!";
+      return;
+    }
+
+    const index = Math.floor(Math.random() * numeros.length);
+    const numeroSorteado = numeros.splice(index, 1)[0];
+    sorteados.push(numeroSorteado);
+
+    document.getElementById("numero").innerText = `Número: ${numeroSorteado}`;
+    document.getElementById("jaSorteados").innerText = `Já sorteados: ${sorteados.join(", ")}`;
+  }
+</script>
+
+</body>
+</html>
